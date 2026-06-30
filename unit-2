@@ -61,3 +61,23 @@ few_response = client.models.generate_content(
 
 
 print(few_response.text)
+#####################################################################################
+from google import genai
+
+
+prompt = """
+You are an experienced financial advisor.
+
+Explain five practical ways for a college student to save money.
+
+Use professional language.
+"""
+
+# Generate content
+response = client.models.generate_content(
+    model="gemini-2.5-flash",
+    contents=prompt
+)
+
+print(response.text)
+#########################################################################################
