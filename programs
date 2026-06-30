@@ -11,3 +11,10 @@ Iteration 3: Specify Key Content Elements
 Prompt:
 Summarize the plot of Romeo and Juliet in exactly two formal sentences. Include the setting (Verona, Italy) and emphasize the themes of love, fate, and family conflict.
 ###############################################################################################
+import google.generativeai as genai
+from IPython.display import Markdown
+from google.colab import userdata
+GOOGLE_API_KEY=userdata.get('geminikey')
+genai.configure(api_key=GOOGLE_API_KEY)
+import google.generativeai as genai
+model = genai.GenerativeModel("gemini-2.5-flash")
