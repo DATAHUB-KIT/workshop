@@ -81,3 +81,17 @@ response = client.models.generate_content(
 
 print(response.text)
 #########################################################################################
+prompt = """
+
+You are an experienced financial advisor.
+
+Explain five practical ways for a college student to save money.
+
+Do not mention any bank names, investment companies, financial products, or brand names.
+
+Return only bullet points.
+
+
+
+"""
+###############################################################################################3
