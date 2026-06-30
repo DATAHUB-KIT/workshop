@@ -125,3 +125,10 @@ images=pipe(prompt=prompt,
             num_inference_steps=100,
             guidance_scale=9).images[0]
 images
+###################################################
+from transformers import pipeline
+classifier=pipeline('sentiment-analysis')
+model_name = "nlptown/bert-base-multilingual-uncased-sentiment"
+classifier = pipeline("sentiment-analysis",
+                      model=model, tokenizer=tokenizer)
+
