@@ -95,3 +95,25 @@ Return only bullet points.
 
 """
 ###############################################################################################3
+article = """
+Artificial Intelligence is transforming healthcare through disease prediction,
+medical imaging, personalized treatment, robotic surgery, and virtual health assistants.
+AI improves accuracy, reduces diagnosis time,
+and supports healthcare professionals.
+"""
+
+prompt = f"""
+Summarize the following article:
+
+{article}
+"""
+
+
+
+response = client.models.generate_content(
+    model="gemini-2.5-flash",
+    contents=prompt
+)
+
+print(response.text)
+
