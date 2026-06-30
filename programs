@@ -18,3 +18,40 @@ GOOGLE_API_KEY=userdata.get('geminikey')
 genai.configure(api_key=GOOGLE_API_KEY)
 import google.generativeai as genai
 model = genai.GenerativeModel("gemini-2.5-flash")
+####################################################################3####################
+from google import genai
+
+# Replace with your Gemini API Key
+API_KEY = GOOGLE_API_KEY
+
+# Create client
+client = genai.Client(api_key=API_KEY)
+
+# List of prompts
+prompts = [
+    # Iteration 1
+    "Summarize the plot of Shakespeare's play Romeo and Juliet in two sentences.",
+
+    # Iteration 2
+    "Summarize the plot of Shakespeare's play Romeo and Juliet in exactly two concise and formal sentences suitable for high school literature students.",
+
+    # Iteration 3
+    "Summarize the plot of Shakespeare's play Romeo and Juliet in exactly two formal sentences. Include the setting (Verona, Italy) and emphasize the themes of love, fate, and family conflict."
+]
+
+# Generate responses
+for i, prompt in enumerate(prompts, start=1):
+    print("=" * 70)
+    print(f"Iteration {i}")
+    print("=" * 70)
+    print("\nPrompt:")
+    print(prompt)
+
+    response = client.models.generate_content(
+        model="gemini-2.5-flash",
+        contents=prompt
+    )
+
+    print("\nGenerated Summary:")
+    print(response.text)
+    print("\n")
