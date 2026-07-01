@@ -1,0 +1,24 @@
+##############unit-3-exp-1############################
+import google.generativeai as genai
+from IPython.display import Markdown
+from google.colab import userdata
+GOOGLE_API_KEY=userdata.get('geminikey')
+genai.configure(api_key=GOOGLE_API_KEY)
+import google.generativeai as genai
+model = genai.GenerativeModel("gemini-2.5-flash")
+
+prompt = """
+List three benefits of daily exercise.
+
+Return the output as a Markdown table with exactly two columns:
+
+Benefit
+Description
+
+Do not include any text before or after the table.
+"""
+
+response = model.generate_content(prompt)
+
+print(response.text)
+#################################################################################3
