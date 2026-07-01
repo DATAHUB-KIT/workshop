@@ -22,3 +22,45 @@ response = model.generate_content(prompt)
 
 print(response.text)
 #################################################################################3
+unit-3-exp-2
+###############################################################################
+prompt = """
+Create valid JSON for the following books.
+
+Title : Python Basics
+Author : John Smith
+Year : 2022
+
+Title : AI Essentials
+Author : Jane Doe
+Year : 2023
+
+Title : Machine Learning
+Author : Alan Brown
+Year : 2021
+
+Return ONLY valid JSON.
+"""
+
+response = model.generate_content(prompt)
+json_text = response.text.strip()
+print(json_text)
+
+#############validate repsone ##################
+# clean response and validate
+json_text = re.sub(r"^```json\s*", "", json_text)
+json_text = re.sub(r"^```", "", json_text)
+json_text = re.sub(r"\s*```$", "", json_text)
+
+print(json_text)
+
+# Validate JSON
+try:
+    data = json.loads(json_text)
+    print("\nJSON is VALID")
+    print(data)
+except json.JSONDecodeError as e:
+    print("\nInvalid JSON")
+    print(e)
+
+#################################################################
