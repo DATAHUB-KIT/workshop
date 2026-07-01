@@ -1,0 +1,19 @@
+1.go to  https://aistudio.google.com/api-keys     googge-ai studio create a new key and copy that one at the time of creation
+
+2.open google colab open left side secrets and give your key name left box ,right box paste your key copied from google studio
+
+3. in google  colab  get your key
+
+first time only
+
+%pip install -U -q "google-generativeai>=0.7.2"
+  
+import google.generativeai as genai
+from IPython.display import Markdown
+
+from google.colab import userdata
+GOOGLE_API_KEY=userdata.get('apikey2')
+genai.configure(api_key=GOOGLE_API_KEY)
+
+  model = genai.GenerativeModel("gemini-2.5-flash")
+
