@@ -79,3 +79,16 @@ response = model.generate_content(prompt)
 
 print(response.text)
 ##################################################
+prompt = """
+A farmer has 17 sheep.
+
+All but 9 die.
+
+Solve the problem step by step.
+
+Explain your interpretation briefly and then provide the final answer.
+"""
+
+response = model.generate_content(prompt)
+
+print(response.text)
