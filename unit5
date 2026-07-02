@@ -14,3 +14,13 @@ import google.generativeai as genai
 model = genai.GenerativeModel("gemini-2.5-flash")
 
 #######################################################
+!pip install pillow
+
+from google import genai
+from PIL import Image
+
+image = Image.open("/content/image1.png")
+
+image
+
+######################
