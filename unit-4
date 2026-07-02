@@ -317,11 +317,28 @@ GOOGLE_API_KEY=userdata.get('geminikey')
 genai.configure(api_key=GOOGLE_API_KEY)
 import google.generativeai as genai
 model = genai.GenerativeModel("gemini-2.5-flash")
-
+##########################################################
 GOOGLE_API_KEY = GOOGLE_API_KEY
+from google import genai
+from google.genai import types
+import os
+client = genai.Client(api_key=GOOGLE_API_KEY)
+#######################################################
+from google import genai
+
+def calculator(expression: str) -> str:
+    return str(eval(expression))
+
+response = client.models.generate_content(
+    model="gemini-2.5-flash",
+    contents="What is 25*16?",
+    config={
+        "tools": [calculator]
+    }
+)
 
 
-
+ print(response.text)
 
 
 
