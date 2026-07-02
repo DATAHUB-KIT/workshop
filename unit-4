@@ -307,7 +307,18 @@ print(plain_response.content)
 unit-5- exp-1
 ############################################################################################
 
+from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.output_parsers import StrOutputParser
+import google.generativeai as genai
+from IPython.display import Markdown
+from google.colab import userdata
+GOOGLE_API_KEY=userdata.get('geminikey')
+genai.configure(api_key=GOOGLE_API_KEY)
+import google.generativeai as genai
+model = genai.GenerativeModel("gemini-2.5-flash")
 
+GOOGLE_API_KEY = GOOGLE_API_KEY
 
 
 
