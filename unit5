@@ -24,3 +24,16 @@ image = Image.open("/content/image1.png")
 image
 
 ######################
+analysis_prompt = """
+Describe this image in detail.
+
+Mention
+
+- Main objects
+- People
+- Activities
+- Environment
+- Colors
+- Technology
+"""
+###################################
