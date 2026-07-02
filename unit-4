@@ -20,3 +20,25 @@ llm = ChatGoogleGenerativeAI(
     google_api_key=GOOGLE_API_KEY
 )
 ######################################################
+prompt = ChatPromptTemplate.from_template(
+"""
+Summarize the following text in 50 words.
+
+Text:
+{text}
+"""
+)
+
+parser = StrOutputParser()
+
+chain = prompt | llm | parser
+
+text = """
+Artificial Intelligence enables computers to perform tasks that normally require human intelligence,
+such as learning, reasoning, decision making, and language understanding.
+"""
+
+result = chain.invoke({"text": text})
+
+print(result)
+#########################################################################################
