@@ -121,4 +121,188 @@ for i, doc in enumerate(results, 1):
     print(f"Result {i}")
     print(doc.page_content)
     print("-" * 50)
+############################################################
+unit-4-experiment-3
+################################################################
+from langchain_google_genai import ChatGoogleGenerativeAI
+
+llm = ChatGoogleGenerativeAI(
+    model="gemini-2.5-flash",
+    google_api_key=GOOGLE_API_KEY,
+    temperature=0
+)
+
+import os
+from google.colab import userdata
+
+os.environ["GOOGLE_API_KEY"] = userdata.get("geminikey")
+
+
+llm = ChatGoogleGenerativeAI(
+    model="gemini-2.5-flash",
+    temperature=0
+)
+
+
+import os
+
+from langchain_core.documents import Document
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+
+from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_community.vectorstores import FAISS
+
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_google_genai import ChatGoogleGenerativeAI
+
+# -------------------------------------------------
+# STEP 1 : Gemini API Key
+# -------------------------------------------------
+
+
+
+# -------------------------------------------------
+# STEP 2 : Sample Documents
+# -------------------------------------------------
+
+documents = [
+
+Document(page_content="""
+Artificial Intelligence (AI) is the science of building intelligent systems.
+Machine Learning is a subset of AI.
+Deep Learning is a subset of Machine Learning.
+"""),
+
+Document(page_content="""
+Natural Language Processing (NLP) enables computers
+to understand and generate human language.
+Applications include chatbots, translation and sentiment analysis.
+"""),
+
+Document(page_content="""
+Computer Vision enables machines to recognize images,
+objects and videos.
+Applications include face recognition and autonomous vehicles.
+""")
+]
+
+# -------------------------------------------------
+# STEP 3 : Split Documents
+# -------------------------------------------------
+
+splitter = RecursiveCharacterTextSplitter(
+    chunk_size=200,
+    chunk_overlap=20
+)
+
+chunks = splitter.split_documents(documents)
+
+print("Chunks:", len(chunks))
+
+# -------------------------------------------------
+# STEP 4 : Embeddings
+# -------------------------------------------------
+
+embedding_model = HuggingFaceEmbeddings(
+    model_name="sentence-transformers/all-MiniLM-L6-v2"
+)
+
+# -------------------------------------------------
+# STEP 5 : Build FAISS Index
+# -------------------------------------------------
+
+vectorstore = FAISS.from_documents(
+    chunks,
+    embedding_model
+)
+
+print("FAISS Index Created")
+
+# -------------------------------------------------
+# STEP 6 : Retriever
+# -------------------------------------------------
+
+retriever = vectorstore.as_retriever(
+    search_kwargs={"k":2}
+)
+
+# -------------------------------------------------
+# STEP 7 : Gemini LLM
+# -------------------------------------------------
+
+llm = ChatGoogleGenerativeAI(
+    model="gemini-2.5-flash",
+    temperature=0
+)
+
+# -------------------------------------------------
+# STEP 8 : Prompt Template
+# -------------------------------------------------
+
+prompt = ChatPromptTemplate.from_template("""
+
+Answer the question only using the context below.
+
+Context:
+{context}
+
+Question:
+{question}
+
+Answer:
+
+""")
+
+# -------------------------------------------------
+# STEP 9 : User Query
+# -------------------------------------------------
+
+query = "What is Machine Learning?"
+
+# -------------------------------------------------
+# STEP 10 : Retrieve Top-K Documents
+# -------------------------------------------------
+
+retrieved_docs = retriever.invoke(query)
+
+context = "\n\n".join(
+    doc.page_content
+    for doc in retrieved_docs
+)
+
+print("\nRetrieved Context\n")
+print(context)
+
+# -------------------------------------------------
+# STEP 11 : Construct Prompt
+# -------------------------------------------------
+
+final_prompt = prompt.invoke(
+    {
+        "context":context,
+        "question":query
+    }
+)
+
+# -------------------------------------------------
+# STEP 12 : Send to Gemini
+# -------------------------------------------------
+
+response = llm.invoke(final_prompt)
+
+print("\nRAG Answer\n")
+print(response.content)
+
+# -------------------------------------------------
+# STEP 13 : Compare WITHOUT Retrieval
+# -------------------------------------------------
+
+print("\nWithout Retrieval\n")
+
+plain_response = llm.invoke(query)
+
+print(plain_response.content)
+
+#############################################################################################
+
 
