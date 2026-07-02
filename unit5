@@ -37,3 +37,11 @@ Mention
 - Technology
 """
 ###################################
+response = client.models.generate_content(
+    model="gemini-2.5-flash",
+    contents=[image, analysis_prompt]
+)
+
+caption = response.text
+
+print(caption)
