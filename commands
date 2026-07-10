@@ -26,3 +26,15 @@ client = genai.Client(api_key=GOOGLE_API_KEY)
 for model in client.models.list():
     if "gemini" in model.name.lower():
         print(model.name)
+###################################################3
+unit-1-exp-2
+#######################################################
+model=genai.GenerativeModel("gemini-2.5-flash")
+
+print("BASELINE")
+response=model.generate_content(
+"Write a one-paragraph bio of Ada Lovelace."
+)
+
+print(response.text)
+###########################################
