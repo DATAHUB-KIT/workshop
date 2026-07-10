@@ -38,3 +38,19 @@ response=model.generate_content(
 
 print(response.text)
 ###########################################
+print("\nENHANCED")
+
+prompt="""
+You are a Computer Science Professor.
+Write a biography of Ada Lovelace.
+Include
+Early Life
+Major Contributions
+Achievements
+Impact on Computing
+Limit 200 words
+Use Markdown headings.
+"""
+response=model.generate_content(prompt)
+print(response.text)
+################################################
