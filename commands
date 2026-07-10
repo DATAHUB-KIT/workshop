@@ -9,3 +9,14 @@ from IPython.display import Markdown
 from google.colab import userdata
 GOOGLE_API_KEY=userdata.get('geminikey')
 genai.configure(api_key=GOOGLE_API_KEY)
+##########################################################
+import google.generativeai as genai
+
+model = genai.GenerativeModel("gemini-2.5-flash")
+
+response = model.generate_content(
+    "Hello World"
+)
+
+print(response.text)
+########################################################
