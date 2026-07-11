@@ -269,3 +269,40 @@ from langchain_core.documents import Document
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
+##################################################################
+# ------------------------------------
+# Step 1: Create Sample Documents
+# ------------------------------------
+
+docs = [
+    Document(page_content="Artificial Intelligence enables machines to learn from data."),
+
+    Document(page_content="Machine Learning is a subset of Artificial Intelligence."),
+
+    Document(page_content="Deep Learning uses multi-layer neural networks."),
+
+    Document(page_content="Natural Language Processing enables computers to understand human language.")
+]
+
+# ------------------------------------
+# Step 2: Split Documents
+# ------------------------------------
+
+splitter = RecursiveCharacterTextSplitter(
+    chunk_size=200,
+    chunk_overlap=20
+)
+
+split_docs = splitter.split_documents(docs)
+
+print("Number of Chunks:", len(split_docs))
+
+# ------------------------------------
+# Step 3: Load Embedding Model
+# ------------------------------------
+
+embeddings = HuggingFaceEmbeddings(
+    model_name="sentence-transformers/all-MiniLM-L6-v2"
+)
+########################################################################
+
