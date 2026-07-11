@@ -149,3 +149,83 @@ response =  client.chat.completions.create(
 
 print(response.choices[0].message.content)
 #####################################################################
+unit-2-exp3-summarize article witch constraints sepecification
+#########################################################################3
+
+
+article = """
+Artificial Intelligence is transforming healthcare through disease prediction,
+medical imaging, personalized treatment, robotic surgery, and virtual health assistants.
+AI improves accuracy, reduces diagnosis time,
+and supports healthcare professionals.
+"""
+
+prompt = f"""
+Summarize the following article:
+
+{article}
+"""
+
+response =  client.chat.completions.create(
+    model="llama-3.3-70b-versatile",
+    messages=[
+        {"role": "user", "content": prompt}
+    ]
+)
+
+
+print(response.choices[0].message.content)
+
+########################################################
+
+article = """
+Artificial Intelligence is transforming healthcare through disease prediction,
+medical imaging, personalized treatment, robotic surgery, and virtual health assistants.
+AI improves accuracy, reduces diagnosis time,
+and supports healthcare professionals.
+"""
+
+prompt = f"""
+Summarize the article.
+
+Constraints:
+
+• Exactly 60 words
+• Use five bullet points
+• Mention disease prediction
+• Mention medical imaging
+• Mention robotic surgery
+• Simple English
+
+{article}
+"""
+response =  client.chat.completions.create(
+    model="llama-3.3-70b-versatile",
+    messages=[
+        {"role": "user", "content": prompt}
+    ]
+)
+
+
+print(response.choices[0].message.content)
+############################################################################3
+unit-3 exp-2
+#################################################################################
+prompt = """
+Create valid JSON for the following books.
+
+Title : Python Basics
+Author : John Smith
+Year : 2022
+
+Title : AI Essentials
+Author : Jane Doe
+Year : 2023
+
+Title : Machine Learning
+Author : Alan Brown
+Year : 2021
+
+Return ONLY valid JSON.
+"""
+################################################################################
