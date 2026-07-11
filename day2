@@ -250,3 +250,19 @@ Return ONLY YAML.
 
 
 ####################################################################################
+unit-4 experiment-2
+########################################################################################
+
+
+!pip install -U langchain
+!pip install -U langchain-community
+!pip install -U langchain-core
+!pip install -U langchain-text-splitters
+!pip install -U langchain-huggingface
+!pip install -U sentence-transformers
+!pip install -U faiss-cpu
+!pip install -U python-dotenv
+
+##########################################################
+
+
