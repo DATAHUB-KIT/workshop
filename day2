@@ -229,3 +229,28 @@ Year : 2021
 Return ONLY valid JSON.
 """
 ################################################################################
+import yaml
+prompt = """
+Generate YAML for the following books.
+
+Python Basics
+John Smith
+2022
+
+AI Essentials
+Jane Doe
+2023
+
+Machine Learning
+Alan Brown
+2021
+
+Return ONLY YAML.
+"""
+
+response = model.generate_content(prompt)
+
+yaml_text = response.text.strip()
+
+print(yaml_text)
+####################################################################################
