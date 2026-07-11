@@ -71,6 +71,65 @@ few_response =  client.chat.completions.create(
 
 print(few_response.choices[0].message.content)
 ###################################################################################
+gemini code unit-2-exp1
+##############################################################################33
+from google import genai
 
-print(zero_response.choices[0].message.content)
+# Replace with your Gemini API Key
+API_KEY = GOOGLE_API_KEY
+
+# Create client
+client = genai.Client(api_key=API_KEY)
+
+zero_prompt = """
+Classify the sentiment of the following review as
+Positive, Negative, or Neutral.
+
+Review:
+"The laptop performance is excellent but the battery drains quickly."
+
+Answer only with the sentiment.
+"""
+
+zero_response = client.models.generate_content(
+    model="gemini-2.5-flash",
+    contents=zero_prompt
+)
+
+print(zero_response.text)
+
+
+##############################################################
+few_prompt = """
+You are a sentiment classifier.
+
+Example 1
+Review: "I love this mobile."
+Sentiment: Positive
+
+Example 2
+Review: "Worst customer service ever."
+Sentiment: Negative
+
+Example 3
+Review: "The product is okay."
+Sentiment: Neutral
+
+Now classify:
+
+Review:
+"The laptop performance is excellent but the battery drains quickly."
+
+Sentiment:
+"""
+
+few_response = client.models.generate_content(
+    model="gemini-2.5-flash",
+    contents=few_prompt
+)
+
+
+print(few_response.text)
+############################################################################3
+
 
