@@ -132,4 +132,20 @@ few_response = client.models.generate_content(
 print(few_response.text)
 ############################################################################3
 
+prompt = """
+You are an experienced financial advisor.
 
+Explain five practical ways for a college student to save money.
+
+Use professional language. """
+
+response =  client.chat.completions.create(
+    model="llama-3.3-70b-versatile",
+    messages=[
+        {"role": "user", "content": prompt}
+    ]
+)
+
+
+print(response.choices[0].message.content)
+#####################################################################
