@@ -37,6 +37,40 @@ zero_response = client.chat.completions.create(
         {"role": "user", "content": zero_prompt}
     ]
 )
+##############################################################################3
+few_prompt = """
+You are a sentiment classifier.
+
+Example 1
+Review: "I love this mobile."
+Sentiment: Positive
+
+Example 2
+Review: "Worst customer service ever."
+Sentiment: Negative
+
+Example 3
+Review: "The product is okay."
+Sentiment: Neutral
+
+Now classify:
+
+Review:
+"The laptop performance is excellent but the battery drains quickly."
+
+Sentiment:
+"""
+
+few_response =  client.chat.completions.create(
+    model="llama-3.3-70b-versatile",
+    messages=[
+        {"role": "user", "content": few_prompt}
+    ]
+)
+
+
+print(few_response.choices[0].message.content)
+###################################################################################
 
 print(zero_response.choices[0].message.content)
 
