@@ -334,4 +334,23 @@ for i, doc in enumerate(results, 1):
     print(f"Result {i}")
     print(doc.page_content)
     print("-" * 50)
+#######################################################################################
+!pip install diffusers
 
+
+
+
+from diffusers import DiffusionPipeline
+import torch
+
+
+prompt="monkey with bannana"
+
+
+
+images=pipe(prompt=prompt,
+            num_inference_steps=100,
+            guidance_scale=9).images[0]
+images
+
+####################################################################################
