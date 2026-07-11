@@ -357,3 +357,7 @@ images=pipe(prompt=prompt,
 images
 
 ####################################################################################
+!pip install transformers
+!pip install transformers pillow pytesseract
+!apt-get install tesseract-ocr -
+##############################################################3
