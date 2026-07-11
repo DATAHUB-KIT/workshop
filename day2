@@ -248,9 +248,5 @@ Alan Brown
 Return ONLY YAML.
 """
 
-response = model.generate_content(prompt)
 
-yaml_text = response.text.strip()
-
-print(yaml_text)
 ####################################################################################
