@@ -116,7 +116,26 @@ Include:
 Return the answer as bullet points.
 """
 
+response1 = client.models.generate_content(
+    model="gemini-2.5-flash",
+    contents=prompt1
+)
 
+output1 = response1.text
+
+print(output1)
+
+
+
+
+response2 = client.models.generate_content(
+    model="gemini-2.5-flash",
+    contents=prompt2
+)
+
+output2 = response2.text
+
+print(output2)
 
 
 
