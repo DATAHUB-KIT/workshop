@@ -2,7 +2,12 @@
 ##################################################################################3
 original_prompt = """ A futuristic classroom where an AI humanoid robot teaches Python programming to engineering students. The classroom has - Blue ambient lighting - Interactive holographic displays - Large digital screens - Students working on laptops - Modern smart classroom - Ultra realistic"""
 ###########################################################
+from google import genai
+from PIL import Image
+image = Image.open("/content/gptimage.png")
 
+image
+##########################################################
 
 analysis_prompt = """
 Describe this image in detail.
