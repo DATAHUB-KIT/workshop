@@ -4,4 +4,17 @@ original_prompt = """ A futuristic classroom where an AI humanoid robot teaches 
 ###########################################################
 
 
+analysis_prompt = """
+Describe this image in detail.
 
+Mention
+
+- Main objects
+- People
+- Activities
+- Environment
+- Colors
+- Technology
+"""
+
+#############################################
