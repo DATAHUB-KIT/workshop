@@ -26,3 +26,11 @@ from google.colab import userdata
 GOOGLE_API_KEY=userdata.get('apikey3')
 client = genai.Client(api_key=GOOGLE_API_KEY)
 ################################################33
+response = client.models.generate_content(
+    model="gemini-2.5-flash",
+    contents=[image, analysis_prompt]
+)
+
+caption = response.text
+
+print(caption)
