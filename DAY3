@@ -84,3 +84,44 @@ judge = client.models.generate_content(
 
 print(judge.text)
 #####################################
+unit-5-exp-3-part-a
+##############################################################
+
+import google.generativeai as genai
+from google.colab import userdata
+GOOGLE_API_KEY=userdata.get('geminikey')
+genai.configure(api_key=GOOGLE_API_KEY)
+
+
+import google.generativeai as genai
+from google import genai
+from google.genai import types
+client = genai.Client(api_key=GOOGLE_API_KEY)
+
+
+
+
+prompt1 = """
+Explain Machine Learning in about 100 words.
+"""
+
+
+prompt2 = """
+Explain Machine Learning in about 100 words.
+Include:
+- Definition
+- Example
+- Applications
+
+Return the answer as bullet points.
+"""
+
+
+
+
+
+
+
+
+
+
