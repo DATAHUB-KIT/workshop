@@ -1,0 +1,2 @@
+!pip install -q langchain langchain-core langchain-google-genai google-generativeai
+##################################################################################3
